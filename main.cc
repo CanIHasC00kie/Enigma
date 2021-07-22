@@ -29,30 +29,67 @@ int main()
 
         if (cmd == 'e')
         {
-            char message;
+            std::string message;
             char ciphertext;
-            std::cout << "Please enter a message: " << std::endl;
+            std::cout << "Please enter a message using only capital letters and spaces: " << std::endl;
 
-            while(std::cin >> message){
 
-                ciphertext=(thoralf.encrypt(message));
+            int ind = 1;
             
-                std::cout << "Ciphertext: " << ciphertext << std::endl;
+            
+            while(std::getline(std::cin, message)){
+                if (ind == 0) {
+                    std::cout << "Ciphertext: ";
+                }
+                
+                for(char &c : message){
+                    if (c != ' '){
+                        ciphertext=(thoralf.encrypt(c));
+                        std::cout << ciphertext;
+                    }
+                    else if (c == ' '){
+                        std::cout << " ";
+                    }
+                }
+                if (ind == 0){
+                    std::cout << std::endl;
+                    std::cout << std::endl;
+                }
+                ind = 0;
+                
             }
             // break;
         }
 
         else if (cmd == 'd'){
+            std::string ciphertext;
             char message;
-            char ciphertext;
-            std::cout << "Please enter ciphertext: " << std::endl;
+            std::cout << "Please enter a message using only capital letters and spaces: " << std::endl;
 
-            while(std::cin >> ciphertext){
 
-            message = thoralf.decrypt(ciphertext);
-
-            std::cout << "Message: " << message << std::endl;
-            // break;
+            int ind = 1;
+            
+            
+            while(std::getline(std::cin, ciphertext)){
+                if (ind == 0) {
+                    std::cout << "Ciphertext: ";
+                }
+                
+                for(char &c : ciphertext){
+                    if (c != ' '){
+                        message=(thoralf.encrypt(c));
+                        std::cout << message;
+                    }
+                    else if (c == ' '){
+                        std::cout << " ";
+                    }
+                }
+                if (ind == 0){
+                    std::cout << std::endl;
+                    std::cout << std::endl;
+                }
+                ind = 0;
+                
             }
             
         }
